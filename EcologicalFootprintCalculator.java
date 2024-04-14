@@ -18,8 +18,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 
 public class EcologicalFootprintCalculator extends JFrame {
-    private JSlider enterConsumption;
-    private JSlider enterDiet;
+    private JSlider enterlocal;
+    private JSlider enterwater;
     private JSlider enterTrash;
     private JButton calculateFootprint;
 
@@ -29,18 +29,18 @@ public class EcologicalFootprintCalculator extends JFrame {
         setLayout(new GridLayout(5, 1));
 
         // Initialize sliders
-        enterConsumption = initSlider(0, 70, 10);
-        enterDiet = initSlider(0, 70, 10);
+        enterlocal = initSlider(0, 70, 10);
+        enterwater = initSlider(0, 70, 10);
         enterTrash = initSlider(0, 70, 10);
 
         calculateFootprint = new JButton("Calculate Footprint");
 
         // Add components
-        add(new JLabel("How much animal product do you consume per week? Once (10), Daily (70):"));
-        add(enterConsumption);
-        add(new JLabel("How much plant-based diet do you consume per week? Once (10), Daily (70):"));
-        add(enterDiet);
-        add(new JLabel("How often do you discard non-recyclable trash per week? Once (10), Daily (70):"));
+        add(new JLabel("How much do you spend on local foods each week? Once (10), Daily (70)"));
+        add(enterlocal);
+        add(new JLabel("How much water do you reuse each week? Once (10), Daily (70)"));
+        add(enterwater);
+        add(new JLabel("How often do you use air conditioning (AC) each week? Once (10), Daily (70)"));
         add(enterTrash);
         add(calculateFootprint);
 
@@ -61,10 +61,10 @@ public class EcologicalFootprintCalculator extends JFrame {
 
     private void addListeners() {
         calculateFootprint.addActionListener(e -> {
-            int consumption = enterConsumption.getValue();
-            int diet = enterDiet.getValue();
+            int local = enterlocal.getValue();
+            int water = enterwater.getValue();
             int trash = enterTrash.getValue();
-            double footprint = (consumption + diet + trash) / 3.0;
+            double footprint = (local + water + trash) / 3.0;
     
             String message = calculateMessage(footprint);
             JOptionPane.showMessageDialog(this, "Your ecological footprint is: " + footprint + " units.\n" + message);
@@ -94,8 +94,8 @@ public class EcologicalFootprintCalculator extends JFrame {
             "<h2>Here are some steps to improve your footprint:</h2>" +
             "<ul>" +
             "<li><b>Support local farmers and sustainable food systems.</b></li>" +
-            "<li><b>Reuse water.</b></li>" +
-            "<li><b>Open your windows to reduce HVAC use.</b></li>" +
+            "<li><b>Reuse water. Ex: Reuse Pasta Water to water the plant outside</b></li>" +
+            "<li><b>Use a fan to reduce HC use.</b></li>" +
             "</ul>" +
             "</body></html>");
         textPane.setEditable(false);
