@@ -20,7 +20,7 @@ import javax.swing.JTextPane;
 public class EcologicalFootprintCalculator extends JFrame {
     private JSlider enterlocal;
     private JSlider enterwater;
-    private JSlider enterTrash;
+    private JSlider enterfan;
     private JButton calculateFootprint;
 
     public EcologicalFootprintCalculator() {
@@ -31,7 +31,7 @@ public class EcologicalFootprintCalculator extends JFrame {
         // Initialize sliders
         enterlocal = initSlider(0, 70, 10);
         enterwater = initSlider(0, 70, 10);
-        enterTrash = initSlider(0, 70, 10);
+        enterfan = initSlider(0, 70, 10);
 
         calculateFootprint = new JButton("Calculate Footprint");
 
@@ -41,7 +41,7 @@ public class EcologicalFootprintCalculator extends JFrame {
         add(new JLabel("How much water do you reuse each week? Once (10), Daily (70)"));
         add(enterwater);
         add(new JLabel("How often do you use air conditioning (AC) each week? Once (10), Daily (70)"));
-        add(enterTrash);
+        add(enterfan);
         add(calculateFootprint);
 
         // Listeners
@@ -63,8 +63,8 @@ public class EcologicalFootprintCalculator extends JFrame {
         calculateFootprint.addActionListener(e -> {
             int local = enterlocal.getValue();
             int water = enterwater.getValue();
-            int trash = enterTrash.getValue();
-            double footprint = (local + water + trash) / 3.0;
+            int fan = enterfan.getValue();
+            double footprint = (local + water + fan) / 3.0;
     
             String message = calculateMessage(footprint);
             JOptionPane.showMessageDialog(this, "Your ecological footprint is: " + footprint + " units.\n" + message);
